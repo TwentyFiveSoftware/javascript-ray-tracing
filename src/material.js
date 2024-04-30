@@ -9,8 +9,19 @@ class Material {
 }
 
 class DiffuseMaterial extends Material {
+    constructor(texture) {
+        super();
+
+        this.texture = texture;
+    }
+
     scatter(ray, hitRecord) {
-        return new ScatterRecord(new Vector3(0.9, 0.9, 0.9), new Ray(hitRecord.point, hitRecord.normal));
+        let scatterDirection = hitRecord.normal.add(Vector3.randomUnitVector()).normalized();
+        if (scatterDirection.isNearZero()) {
+            scatterDirection = hitRecord.normal;
+        }
+
+        return new ScatterRecord(this.texture.getColorAt(hitRecord.point), new Ray(hitRecord.point, scatterDirection));
     }
 }
 

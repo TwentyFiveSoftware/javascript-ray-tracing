@@ -61,6 +61,20 @@ class Vector3 {
 
         return this.mulScalar(1 / length);
     }
+
+    isNearZero() {
+        const epsilon = 1e-8;
+        return Math.abs(this.x) < epsilon && Math.abs(this.y) < epsilon && Math.abs(this.z) < epsilon;
+    }
+
+    static randomUnitVector() {
+        while (true) {
+            const point = new Vector3(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1);
+            if (point.lengthSquared() < 1.0) {
+                return point.normalized();
+            }
+        }
+    }
 }
 
 module.exports = Vector3;

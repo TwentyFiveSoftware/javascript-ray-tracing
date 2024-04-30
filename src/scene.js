@@ -1,6 +1,7 @@
 const Vector3 = require("./vector3");
 const Sphere = require("./sphere");
 const {DiffuseMaterial} = require("./material");
+const {SolidTexture} = require("./texture");
 
 class Scene {
     constructor(spheres) {
@@ -10,7 +11,7 @@ class Scene {
     static generateRandomScene() {
         const spheres = [];
 
-        spheres.push(new Sphere(Vector3.zero(), 1, new DiffuseMaterial()));
+        spheres.push(new Sphere(Vector3.zero(), 1, new DiffuseMaterial(new SolidTexture(new Vector3(0.9, 0.9, 0.9)))));
 
         return new Scene(spheres);
     }
