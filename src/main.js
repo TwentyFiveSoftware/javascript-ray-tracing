@@ -6,12 +6,17 @@ const Scene = require("./scene");
 
 const WIDTH = 800;
 const HEIGHT = 450;
-const SAMPLES_PER_PIXEL = 5;
+const SAMPLES_PER_PIXEL = 1;
 const MAX_RAY_TRACE_DEPTH = 50;
 
 const camera = new Camera(new Vector3(12, 2, -3), Vector3.zero(), 25, WIDTH, HEIGHT);
 const scene = Scene.generateRandomScene();
 const renderer = new Renderer(camera, scene);
 
+const renderStartTime = Date.now();
 const pixels = renderer.render(WIDTH, HEIGHT, SAMPLES_PER_PIXEL, MAX_RAY_TRACE_DEPTH);
+const renderFinishTime = Date.now();
+
+console.log(`rendered ${SAMPLES_PER_PIXEL} samples/pixel in ${renderFinishTime - renderStartTime} ms`);
+
 ImageUtil.savePixelsAsPng("render.png", pixels, WIDTH, HEIGHT);

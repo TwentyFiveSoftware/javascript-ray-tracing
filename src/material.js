@@ -35,7 +35,7 @@ class MetalMaterial extends Material {
     scatter(ray, hitRecord) {
         const scatterDirection = ray.direction.reflect(hitRecord.normal);
 
-        if (scatterDirection.dot(hitRecord.normal()) <= 0) {
+        if (scatterDirection.dot(hitRecord.normal) <= 0) {
             return null;
         }
 
@@ -52,7 +52,7 @@ class DielectricMaterial extends Material {
 
     scatter(ray, hitRecord) {
         const refractionRatio = hitRecord.isFrontFacing ? (1 / this.refractionIndex) : this.refractionIndex;
-        const scatterDirection = ray.direction().refract(hitRecord.normal, refractionRatio);
+        const scatterDirection = ray.direction.refract(hitRecord.normal, refractionRatio);
 
         return new ScatterRecord(new Vector3(1, 1, 1), new Ray(hitRecord.point, scatterDirection));
     }

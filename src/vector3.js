@@ -1,8 +1,8 @@
 class Vector3 {
     constructor(x, y, z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        this.x = x ?? 0;
+        this.y = y ?? 0;
+        this.z = z ?? 0;
     }
 
     static zero() {
@@ -90,7 +90,7 @@ class Vector3 {
     static randomUnitVector() {
         while (true) {
             const point = new Vector3(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1);
-            if (point.lengthSquared() < 1.0) {
+            if (point.lengthSquared() < 1) {
                 return point.normalized();
             }
         }
