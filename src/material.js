@@ -25,4 +25,37 @@ class DiffuseMaterial extends Material {
     }
 }
 
-module.exports = {Material, DiffuseMaterial};
+class MetalMaterial extends Material {
+    constructor(texture) {
+        super();
+
+        this.texture = texture;
+    }
+
+    scatter(ray, hitRecord) {
+        const scatterDirection = ray.direction.reflect(hitRecord.normal);
+
+        if (scatterDirection.dot(hitRecord.normal()) <= 0) {
+            return null;
+        }
+
+        return new ScatterRecord(this.texture.getColorAt(hitRecord.point), new Ray(hitRecord.point, scatterDirection));
+    }
+}
+
+class DielectricMaterial extends Material {
+    constructor(refractionIndex) {
+        super();
+
+        this.refractionIndex = refractionIndex;
+    }
+
+    scatter(ray, hitRecord) {
+        const refractionRatio = hitRecord.isFrontFacing ? (1 / this.refractionIndex) : this.refractionIndex;
+        const scatterDirection = ray.direction().refract(hitRecord.normal, refractionRatio);
+
+        return new ScatterRecord(new Vector3(1, 1, 1), new Ray(hitRecord.point, scatterDirection));
+    }
+}
+
+module.exports = {Material, DiffuseMaterial, MetalMaterial, DielectricMaterial};

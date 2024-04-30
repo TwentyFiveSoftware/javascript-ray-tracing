@@ -67,6 +67,26 @@ class Vector3 {
         return Math.abs(this.x) < epsilon && Math.abs(this.y) < epsilon && Math.abs(this.z) < epsilon;
     }
 
+    reflect(normal) {
+        return this.sub(normal.mulScalar(2 * this.dot(normal)));
+    }
+
+    refract(normal, refractionRatio) {
+        const cosTheta = Math.min(normal.dot(this.neg()), 1);
+        const sinTheta = Math.sqrt(1 - cosTheta * cosTheta);
+
+        const r0 = (1 - refractionRatio) / (1 + refractionRatio);
+        const reflectance = (r0 * r0 + (1 - r0 * r0) * Math.pow(1 - cosTheta, 5));
+
+        if (refractionRatio * sinTheta > 1 || reflectance > Math.random()) {
+            return this.reflect(normal);
+        }
+
+        const rOutPerpendicular = this.add(normal.mul(cosTheta)).mul(refractionRatio);
+        const rOutParallel = normal.mul(-Math.sqrt(1 - rOutPerpendicular.lengthSquared()));
+        return rOutPerpendicular.add(rOutParallel);
+    }
+
     static randomUnitVector() {
         while (true) {
             const point = new Vector3(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1);
