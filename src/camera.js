@@ -11,12 +11,12 @@ class Camera {
         const right = new Vector3(0, 1, 0).cross(forward).normalized();
         const up = forward.cross(right).normalized();
 
-        const horizontalDirection = right.mul(viewportWidth);
-        const verticalDirection = up.mul(viewportHeight);
+        const horizontalDirection = right.mulScalar(viewportWidth);
+        const verticalDirection = up.mulScalar(viewportHeight);
 
         const upperLeftCorner = lookFrom
-            .sub(horizontalDirection.mul(0.5))
-            .add(verticalDirection.mul(0.5))
+            .sub(horizontalDirection.mulScalar(0.5))
+            .add(verticalDirection.mulScalar(0.5))
             .add(forward);
 
         this.lookFrom = lookFrom;
@@ -27,8 +27,8 @@ class Camera {
 
     getCameraRay(u, v) {
         const target = this.upperLeftCorner
-            .add(this.horizontalDirection.mul(u))
-            .sub(this.verticalDirection.mul(v));
+            .add(this.horizontalDirection.mulScalar(u))
+            .sub(this.verticalDirection.mulScalar(v));
 
         return new Ray(this.lookFrom, target.sub(this.lookFrom).normalized());
     }

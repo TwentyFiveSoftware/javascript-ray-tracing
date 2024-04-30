@@ -21,8 +21,12 @@ class Vector3 {
         return new Vector3(-this.x, -this.y, -this.z);
     }
 
-    mul(scalar) {
+    mulScalar(scalar) {
         return new Vector3(this.x * scalar, this.y * scalar, this.z * scalar);
+    }
+
+    mul(other) {
+        return new Vector3(this.x * other.x, this.y * other.y, this.z * other.z);
     }
 
     cross(other) {
@@ -55,7 +59,7 @@ class Vector3 {
             return this;
         }
 
-        return this.mul(1 / length);
+        return this.mulScalar(1 / length);
     }
 }
 

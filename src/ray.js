@@ -5,7 +5,7 @@ class Ray {
     }
 
     at(t) {
-        return this.origin.add(this.direction.mul(t));
+        return this.origin.add(this.direction.mulScalar(t));
     }
 }
 
