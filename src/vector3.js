@@ -5,6 +5,10 @@ class Vector3 {
         this.z = z;
     }
 
+    static zero() {
+        return new Vector3(0, 0, 0);
+    }
+
     add(other) {
         return new Vector3(this.x + other.x, this.y + other.y, this.z + other.z);
     }
@@ -21,8 +25,20 @@ class Vector3 {
         return new Vector3(this.x * scalar, this.y * scalar, this.z * scalar);
     }
 
+    cross(other) {
+        return new Vector3(
+            this.y * other.z - this.z * other.y,
+            this.z * other.x - this.x * other.z,
+            this.x * other.y - this.y * other.x
+        );
+    }
+
     dot(other) {
         return this.x * other.x + this.y * other.y + this.z * other.z;
+    }
+
+    sqrt() {
+        return new Vector3(Math.sqrt(this.x), Math.sqrt(this.y), Math.sqrt(this.z));
     }
 
     lengthSquared() {
@@ -39,6 +55,8 @@ class Vector3 {
             return this;
         }
 
-        return this.mul(1.0 / length);
+        return this.mul(1 / length);
     }
 }
+
+module.exports = Vector3;

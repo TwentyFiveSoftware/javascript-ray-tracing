@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node src/main.js"
+  },
+  "dependencies": {
+    "jimp": "^0.22.12"
   }
 }
