@@ -2,7 +2,7 @@
   "name": "javascript-ray-tracing",
   "version": "1.0.0",
   "scripts": {
-    "start": "node src/main.js"
+    "start": "NODE_ENV=production node src/main.js"
   },
   "dependencies": {
     "jimp": "^0.22.12"
