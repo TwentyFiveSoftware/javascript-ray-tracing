@@ -82,8 +82,8 @@ class Vector3 {
             return this.reflect(normal);
         }
 
-        const rOutPerpendicular = this.add(normal.mul(cosTheta)).mul(refractionRatio);
-        const rOutParallel = normal.mul(-Math.sqrt(1 - rOutPerpendicular.lengthSquared()));
+        const rOutPerpendicular = this.add(normal.mulScalar(cosTheta)).mulScalar(refractionRatio);
+        const rOutParallel = normal.mulScalar(-Math.sqrt(1 - rOutPerpendicular.lengthSquared()));
         return rOutPerpendicular.add(rOutParallel);
     }
 
