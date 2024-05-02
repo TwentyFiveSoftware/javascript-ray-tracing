@@ -1,5 +1,5 @@
 const HitRecord = require("./hitrecord");
-const {Material} = require("./material");
+const { Material } = require("./material");
 const Vector3 = require("./vector3");
 
 class Sphere {
@@ -47,7 +47,7 @@ class Sphere {
     }
 
     static deserialize(raw) {
-        const {center, radius, material} = JSON.parse(raw);
+        const { center, radius, material } = JSON.parse(raw);
         return new Sphere(Vector3.deserialize(center), radius, Material.deserialize(material));
     }
 }

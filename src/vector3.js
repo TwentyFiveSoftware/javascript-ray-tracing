@@ -33,7 +33,7 @@ class Vector3 {
         return new Vector3(
             this.y * other.z - this.z * other.y,
             this.z * other.x - this.x * other.z,
-            this.x * other.y - this.y * other.x
+            this.x * other.y - this.y * other.x,
         );
     }
 
@@ -76,7 +76,7 @@ class Vector3 {
         const sinTheta = Math.sqrt(1 - cosTheta * cosTheta);
 
         const r0 = (1 - refractionRatio) / (1 + refractionRatio);
-        const reflectance = (r0 * r0 + (1 - r0 * r0) * Math.pow(1 - cosTheta, 5));
+        const reflectance = r0 * r0 + (1 - r0 * r0) * Math.pow(1 - cosTheta, 5);
 
         if (refractionRatio * sinTheta > 1 || reflectance > Math.random()) {
             return this.reflect(normal);
@@ -105,7 +105,7 @@ class Vector3 {
     }
 
     static deserialize(raw) {
-        const {x, y, z} = JSON.parse(raw);
+        const { x, y, z } = JSON.parse(raw);
         return new Vector3(x, y, z);
     }
 }

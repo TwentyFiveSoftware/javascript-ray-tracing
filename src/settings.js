@@ -18,7 +18,7 @@ class Settings {
     }
 
     static deserialize(raw) {
-        const {width, height, samplesPerPixel, maxRayTraceDepth, renderWorkers} = JSON.parse(raw);
+        const { width, height, samplesPerPixel, maxRayTraceDepth, renderWorkers } = JSON.parse(raw);
         return new Settings(width, height, samplesPerPixel, maxRayTraceDepth, renderWorkers);
     }
 }

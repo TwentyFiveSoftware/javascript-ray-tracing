@@ -11,7 +11,7 @@ class Camera {
 
     static fromFov(lookFrom, lookAt, fov, width, height) {
         const aspectRatio = width / height;
-        const viewportHeight = Math.tan(fov / 360 * Math.PI) * 2;
+        const viewportHeight = Math.tan((fov / 360) * Math.PI) * 2;
         const viewportWidth = viewportHeight * aspectRatio;
 
         const forward = lookAt.sub(lookFrom).normalized();
@@ -47,7 +47,7 @@ class Camera {
     }
 
     static deserialize(raw) {
-        const {lookFrom, upperLeftCorner, horizontalDirection, verticalDirection} = JSON.parse(raw);
+        const { lookFrom, upperLeftCorner, horizontalDirection, verticalDirection } = JSON.parse(raw);
         return new Camera(
             Vector3.deserialize(lookFrom),
             Vector3.deserialize(upperLeftCorner),

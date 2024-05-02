@@ -1,19 +1,19 @@
 const ScatterRecord = require("./scatterrecord");
 const Vector3 = require("./vector3");
 const Ray = require("./ray");
-const {Texture} = require("./texture");
+const { Texture } = require("./texture");
 
 class Material {
     scatter(ray, hitRecord) {
         return null;
-    };
+    }
 
     serialize() {
         return JSON.stringify({});
     }
 
     static deserialize(raw) {
-        const {materialType} = JSON.parse(raw);
+        const { materialType } = JSON.parse(raw);
         switch (materialType) {
             case DiffuseMaterial.MATERIAL_TYPE:
                 return DiffuseMaterial.deserialize(raw);
@@ -53,7 +53,7 @@ class DiffuseMaterial extends Material {
     }
 
     static deserialize(raw) {
-        const {texture} = JSON.parse(raw);
+        const { texture } = JSON.parse(raw);
         return new DiffuseMaterial(Texture.deserialize(texture));
     }
 }
@@ -85,7 +85,7 @@ class MetalMaterial extends Material {
     }
 
     static deserialize(raw) {
-        const {texture} = JSON.parse(raw);
+        const { texture } = JSON.parse(raw);
         return new MetalMaterial(Texture.deserialize(texture));
     }
 }
@@ -100,7 +100,7 @@ class DielectricMaterial extends Material {
     }
 
     scatter(ray, hitRecord) {
-        const refractionRatio = hitRecord.isFrontFacing ? (1 / this.refractionIndex) : this.refractionIndex;
+        const refractionRatio = hitRecord.isFrontFacing ? 1 / this.refractionIndex : this.refractionIndex;
         const scatterDirection = ray.direction.refract(hitRecord.normal, refractionRatio);
 
         return new ScatterRecord(new Vector3(1, 1, 1), new Ray(hitRecord.point, scatterDirection));
@@ -114,9 +114,9 @@ class DielectricMaterial extends Material {
     }
 
     static deserialize(raw) {
-        const {refractionIndex} = JSON.parse(raw);
+        const { refractionIndex } = JSON.parse(raw);
         return new DielectricMaterial(refractionIndex);
     }
 }
 
-module.exports = {Material, DiffuseMaterial, MetalMaterial, DielectricMaterial};
+module.exports = { Material, DiffuseMaterial, MetalMaterial, DielectricMaterial };

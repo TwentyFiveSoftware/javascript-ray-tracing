@@ -1,4 +1,4 @@
-const {Worker, MessageChannel} = require("node:worker_threads");
+const { Worker, MessageChannel } = require("node:worker_threads");
 const path = require("node:path");
 const Vector3 = require("./vector3");
 
@@ -8,7 +8,7 @@ class Renderer {
         const workerChannels = [];
 
         for (let i = 0; i < settings.renderWorkers; i++) {
-            const {port1: mainThreadPort, port2: workerPort} = new MessageChannel();
+            const { port1: mainThreadPort, port2: workerPort } = new MessageChannel();
 
             workerChannels.push(mainThreadPort);
             renderWorkers.push(Renderer.runRenderWorker(workerPort, camera, scene, settings));
@@ -25,7 +25,7 @@ class Renderer {
 
                 const y = nextRowIndex++;
 
-                console.log(`${y + 1} / ${settings.height} (${((y + 1) / settings.height * 100).toFixed(2)}%)`);
+                console.log(`${y + 1} / ${settings.height} (${(((y + 1) / settings.height) * 100).toFixed(2)}%)`);
 
                 workerChannel.postMessage(y);
             });
@@ -52,7 +52,7 @@ class Renderer {
                     rawScene: scene.serialize(),
                     rawSettings: settings.serialize(),
                 },
-                transferList: [workerPort]
+                transferList: [workerPort],
             });
 
             const pixelRows = [];
@@ -109,7 +109,9 @@ class Renderer {
             return Vector3.zero();
         }
 
-        return scatterRecord.attenuation.mul(this._calculateRayColor(scene, scatterRecord.scatteredRay, remainingDepth - 1));
+        return scatterRecord.attenuation.mul(
+            this._calculateRayColor(scene, scatterRecord.scatteredRay, remainingDepth - 1),
+        );
     }
 }
 

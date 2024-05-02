@@ -10,7 +10,7 @@ class Texture {
     }
 
     static deserialize(raw) {
-        const {textureType} = JSON.parse(raw);
+        const { textureType } = JSON.parse(raw);
         switch (textureType) {
             case SolidTexture.TEXTURE_TYPE:
                 return SolidTexture.deserialize(raw);
@@ -43,7 +43,7 @@ class SolidTexture extends Texture {
     }
 
     static deserialize(raw) {
-        const {albedo} = JSON.parse(raw);
+        const { albedo } = JSON.parse(raw);
         return new SolidTexture(Vector3.deserialize(albedo));
     }
 }
@@ -73,9 +73,9 @@ class CheckeredTexture extends Texture {
     }
 
     static deserialize(raw) {
-        const {albedo1, albedo2} = JSON.parse(raw);
+        const { albedo1, albedo2 } = JSON.parse(raw);
         return new CheckeredTexture(Vector3.deserialize(albedo1), Vector3.deserialize(albedo2));
     }
 }
 
-module.exports = {Texture, SolidTexture, CheckeredTexture};
+module.exports = { Texture, SolidTexture, CheckeredTexture };

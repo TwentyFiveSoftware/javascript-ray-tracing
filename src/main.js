@@ -17,6 +17,6 @@ const main = async () => {
 
     console.log(`rendered ${settings.samplesPerPixel} samples/pixel in ${renderFinishTime - renderStartTime} ms`);
     ImageUtil.savePixelsAsPng("render.png", pixels, settings.width, settings.height);
-}
+};
 
 main().catch(err => console.error(err));

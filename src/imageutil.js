@@ -10,10 +10,10 @@ class ImageUtil {
 
         for (let y = 0; y < height; y++) {
             for (let x = 0; x < width; x++) {
-                const color = pixels[y * width + x].sqrt().mulScalar(0xFF);
+                const color = pixels[y * width + x].sqrt().mulScalar(0xff);
 
                 const hex = new Uint32Array(1);
-                hex[0] = (color.x << 24) | (color.y << 16) | (color.z << 8) | 0xFF;
+                hex[0] = (color.x << 24) | (color.y << 16) | (color.z << 8) | 0xff;
 
                 image.setPixelColor(hex[0], x, y);
             }

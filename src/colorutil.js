@@ -7,7 +7,7 @@ class ColorUtil {
 
     static _hsvToRgb(hue, s, v) {
         const h = hue / 60;
-        const fraction = (h - Math.floor(h));
+        const fraction = h - Math.floor(h);
 
         const p = v * (1 - s);
         const q = v * (1 - s * fraction);
