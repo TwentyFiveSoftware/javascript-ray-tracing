@@ -95,6 +95,19 @@ class Vector3 {
             }
         }
     }
+
+    serialize() {
+        return JSON.stringify({
+            x: this.x,
+            y: this.y,
+            z: this.z,
+        });
+    }
+
+    static deserialize(raw) {
+        const {x, y, z} = JSON.parse(raw);
+        return new Vector3(x, y, z);
+    }
 }
 
 module.exports = Vector3;

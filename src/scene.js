@@ -68,6 +68,17 @@ class Scene {
 
         return currentHitRecord;
     }
+
+    serialize() {
+        return JSON.stringify({
+            spheres: this.spheres.map(sphere => sphere.serialize()),
+        });
+    }
+
+    static deserialize(raw) {
+        const {spheres} = JSON.parse(raw);
+        return new Scene(spheres.map(rawSphere => Sphere.deserialize(rawSphere)));
+    }
 }
 
 module.exports = Scene;
