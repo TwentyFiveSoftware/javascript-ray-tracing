@@ -2,12 +2,15 @@
   "name": "javascript-ray-tracing",
   "version": "1.0.0",
   "scripts": {
-    "start": "NODE_ENV=production node nodejs-js/main.js"
+    "nodejs-js": "NODE_ENV=production node nodejs-js/main.js",
+    "nodejs-ts": "NODE_ENV=production tsm nodejs-ts/main.ts"
   },
   "dependencies": {
     "jimp": "^0.22.12"
   },
   "devDependencies": {
-    "prettier": "^3.2.5"
+    "prettier": "^3.2.5",
+    "tsm": "^2.3.0",
+    "typescript": "^5.4.5"
   }
 }

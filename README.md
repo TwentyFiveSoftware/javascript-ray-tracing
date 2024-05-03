@@ -12,7 +12,7 @@ This project uses JavaScript and is intended to serve as a reference point in th
 
 1. Install [Node.js](https://nodejs.org/en/download)
 2. Clone the repository
-3. Optional: Change sample and worker count in `src/main.js`
+3. Optional: Change sample and worker count in `src/main.ts`
 4. Install dependencies
    ```sh
    npm install
