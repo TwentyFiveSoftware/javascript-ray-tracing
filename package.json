@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "scripts": {
     "nodejs-js": "NODE_ENV=production node nodejs-js/main.js",
-    "nodejs-ts": "NODE_ENV=production tsm nodejs-ts/main.ts"
+    "nodejs-ts-tsm": "NODE_ENV=production tsm nodejs-ts/main.ts",
+    "nodejs-ts-tsnode": "NODE_ENV=production node -r ts-node/register nodejs-ts/main.ts",
+    "nodejs-ts-tsc": "tsc && NODE_ENV=production node nodejs-ts/main.js ./nodejs-ts/renderworker.js"
   },
   "dependencies": {
     "jimp": "^0.22.12"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
+    "ts-node": "^10.9.2",
     "tsm": "^2.3.0",
     "typescript": "^5.4.5"
   }

@@ -1,4 +1,3 @@
-import * as path from "path";
 import { Worker, MessageChannel, MessagePort } from "node:worker_threads";
 import { Camera } from "./camera";
 import { Scene } from "./scene";
@@ -57,8 +56,7 @@ export class Renderer {
         settings: Settings,
     ): Promise<RenderWorkerResult> {
         return new Promise((resolve, reject) => {
-            // @ts-ignore
-            const worker: Worker = new Worker(path.join(__dirname, "./renderworker.ts"), {
+            const worker: Worker = new Worker(settings.renderWorkerFilePath, {
                 workerData: {
                     messageChannel: workerPort,
                     rawCamera: camera.serialize(),

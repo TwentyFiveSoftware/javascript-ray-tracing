@@ -6,6 +6,7 @@ export class Settings implements Serializable {
     public readonly samplesPerPixel: number;
     public readonly maxRayTraceDepth: number;
     public readonly renderWorkers: number;
+    public readonly renderWorkerFilePath: string;
 
     constructor(
         width: number,
@@ -13,12 +14,14 @@ export class Settings implements Serializable {
         samplesPerPixel: number,
         maxRayTraceDepth: number,
         renderWorkers: number,
+        renderWorkerFilePath: string,
     ) {
         this.width = width;
         this.height = height;
         this.samplesPerPixel = samplesPerPixel;
         this.maxRayTraceDepth = maxRayTraceDepth;
         this.renderWorkers = renderWorkers;
+        this.renderWorkerFilePath = renderWorkerFilePath;
     }
 
     public serialize(): string {
@@ -32,8 +35,15 @@ export class Settings implements Serializable {
     }
 
     public static deserialize(raw: string): Settings {
-        const { width, height, samplesPerPixel, maxRayTraceDepth, renderWorkers }: SerializedSettings = JSON.parse(raw);
-        return new Settings(width, height, samplesPerPixel, maxRayTraceDepth, renderWorkers);
+        const {
+            width,
+            height,
+            samplesPerPixel,
+            maxRayTraceDepth,
+            renderWorkers,
+            renderWorkerFilePath,
+        }: SerializedSettings = JSON.parse(raw);
+        return new Settings(width, height, samplesPerPixel, maxRayTraceDepth, renderWorkers, renderWorkerFilePath);
     }
 }
 
@@ -43,4 +53,5 @@ interface SerializedSettings {
     samplesPerPixel: number;
     maxRayTraceDepth: number;
     renderWorkers: number;
+    renderWorkerFilePath: string;
 }
