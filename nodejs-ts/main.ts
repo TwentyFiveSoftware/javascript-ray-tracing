@@ -8,7 +8,7 @@ import { ImageUtil } from "./imageutil";
 
 const renderWorkerPath: string = process.argv.length > 2 ? process.argv[2] : "./nodejs-ts/renderworker.ts";
 
-const settings: Settings = new Settings(800, 450, 1, 50, os.cpus().length, renderWorkerPath);
+const settings: Settings = new Settings(1920, 1080, 1, 50, os.cpus().length, renderWorkerPath);
 
 const main = async (): Promise<void> => {
     const camera: Camera = Camera.fromFov(new Vector3(12, 2, -3), Vector3.zero(), 25, settings);

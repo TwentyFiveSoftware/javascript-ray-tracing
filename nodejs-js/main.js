@@ -6,7 +6,7 @@ const Vector3 = require("./vector3");
 const Scene = require("./scene");
 const Settings = require("./settings");
 
-const settings = new Settings(800, 450, 1, 50, os.cpus().length);
+const settings = new Settings(1920, 1080, 1, 50, os.cpus().length);
 
 const main = async () => {
     const camera = Camera.fromFov(new Vector3(12, 2, -3), Vector3.zero(), 25, settings.width, settings.height);
